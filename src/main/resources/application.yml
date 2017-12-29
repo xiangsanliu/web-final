@@ -1,0 +1,15 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: utf-8
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+  thymeleaf:
+    cache: false
