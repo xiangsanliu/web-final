@@ -2,6 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link rel="stylesheet" th:href="@{/css/index.css}" />
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--<script th:src="@{/js/index.js}"></script>-->
 </head>
 <body>
  	<div id="wrapper">
@@ -41,8 +45,8 @@
 						}
 					</script>
 					<div id="showlog">
-						<p  class="Lo"><a href="javascript:void(0)">Log in</a></p>
-						<p class="Lo"><a href="javascript:void(0)">Set up</a></p>
+						<p  class="Lo"><a href="javascript:void(0)">学生登陆</a></p>
+						<p class="Lo"><a href="javascript:void(0)">学委登陆</a></p>
 					</div>
 				</div>
 				<div id="search"></div>
@@ -73,40 +77,11 @@
  				<div id="content">
  					<div id="content_header">当前位置：创建活动</div>
  					<div id="content_body">
- 						<form action="__APP__/Home/Activity/creatActive" method='post' name='myForm'>
- 							<p class='warning'></p>
- 							<div class="row">名　&nbsp;&nbsp;&nbsp;称 &nbsp;<span><input class="text" type="text" name="activeName" id="activeName"/></span></div>
-							<div class="row">开始时间 &nbsp;<span><input class="text" type="text" name="str_time" id="str_time"/></span>
-											 <div class="row_son">结束时间 &nbsp;&nbsp;<span><input class="text" type="text" name="end_time" id="end_time"/></span></div>
-							</div>
-							<div class="row">地　&nbsp;&nbsp;&nbsp;点 &nbsp;<span><input class="text" type="text" name="place" id="place"/></span>
-											 <div class="row_son">电　&nbsp;&nbsp;&nbsp;话 &nbsp;&nbsp;&nbsp;<span><input class="text" id="phone" type="text" name="phone"/></span></div>
-							</div>
-							<div class="row">费　&nbsp;&nbsp;&nbsp;用 &nbsp;<span><input class="text" id="price" type="text" name="price"/></span></div>
-							<div class="row2"><span></span>活动介绍 &nbsp;<textarea name='content'  id="actContent" rows="6" cols="49"></textarea></div>
-
-							<!--<input type="hidden" name="href" value="<{$_SESSION['href']}>"/>-->
-							<div class="row"><a href="javascript:void(0)" class="submit" id="sub">创建活动</a></div>
-							<!-- <span><{$_SESSION['href']}></span> -->
+ 						<form method='post' action="/upload/file" enctype="multipart/form-data">
+							<input type="file" name="file" id="file"/>
+							<input type="submit" value="Submit" id="submit"/>
  						</form>
  					</div>
- 					
- 					<script>
- 						$(document).ready(function(){
- 							/*$("#sub").on('click',function(){
- 								var activeName = $("#activeName").val();
- 								var str_time   = $("#str_time").val();
- 								var end_time   = $("#end_time").val();
- 								var place      = $("#place").val();
- 								var phone 	   = $("#phone").val();
- 								var price      = $("#price").val();
- 								//alert('123');		
- 							});*/
- 							$('#sub').click(function(){
-								$('form[name="myForm"]').submit();
-							});
- 						});
- 					</script>
  				</div>
  			</div>
  		</div>

@@ -13,3 +13,14 @@ spring:
     encoding: UTF-8
   thymeleaf:
     cache: false
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://119.28.179.36:3306/Test?autoReconnect=true&useSSL=false&characterEncoding=utf-8
+    username: root
+    password: xiangjianjian
+    driver-class-name: com.mysql.jdbc.Driver
+  data:
+    jpa:
+      repositories:
+        enabled: true

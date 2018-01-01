@@ -8,7 +8,7 @@ html body #wrapper{
 	width: 100%;
 	overflow:hidden;
 	min-width: 980px;
-	font-family: "Hiragino Sans GB",\5FAE\8F6F\96C5\9ED1,Tohoma;
+	font-family: "Hiragino Sans GB", \5FAE\8F6F\96C5\9ED1, Tohoma, sans-sans-serif;
 	background: #f3f3f3;
 	font-size: 12px;
 }
@@ -42,7 +42,7 @@ a{
 	margin-left: 5%;
 	text-decoration: none;
 	font-weight: bold;
-	font-family:Georgia;
+	font-family: Georgia, sans-serif;
 }
 #header #login{
 	width: 8%;
@@ -107,14 +107,13 @@ a{
 	font-size:14px;
 	color: white;
 	font-weight: bold;
-	padding: 0 20px;
-	padding-top: 11px;
-	font-family:SimFang;
+	padding: 11px 20px 0;
+	font-family: SimFang, sans-serif;
 	text-decoration: none;
 }
 #header #nav ul.navul li a:hover{
 	background: #A7621A;
-	font-size: 14.2px;
+	font-size: 14px;
 }
 #main{
 	width: 100%;
@@ -136,7 +135,7 @@ a{
 	width: 100%;
 	height: 82px;
 	border-bottom:1px solid #f3f3f3;
-	box-shadow:0px 0px 1px #ddd;
+	box-shadow:0 0 1px #ddd;
 }
 #sidebar #sideHeader #active{
 	width: 76%;
@@ -173,7 +172,7 @@ a{
 }
 #sidebar ul#sidebody li a:hover{
 	background:#FFFAFA;
-	border-left: 1.5px solid #23B7E5;
+	border-left: 2px solid #23B7E5;
 	text-indent:32%;
 	transition-property:text-indent;
 	transition-duration:0.5s;
@@ -229,7 +228,7 @@ a{
 	background:  #89A2E9;
 }
 #content #content_body div.row2{
-	padding-left:45px;
+	padding-left: 45px;
 }
 #content #content_body div.row2 span{
 	position: relative;
