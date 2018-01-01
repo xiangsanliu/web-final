@@ -41,13 +41,6 @@
  					<ul id="sidebody" th:each="assignment:${assignments}">
  						<li><a th:text="${assignment.getName()}" th:onclick="'displayDescription(\''+${assignment.getName()}+'\',\''+${assignment.getDescription()}+'\');'"></a></li>
  					</ul>
-					<script>
-                        function displayDescription(name, description) {
-                            $("#content_header").text(name);
-                            $("#assign_body").text(description);
-                            $("#content_body").show();
-                        }
-					</script>
  				</div>
  				<div id="content">
  					<div id="content_header" >使用说明</div>
