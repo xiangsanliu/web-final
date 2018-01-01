@@ -36,8 +36,13 @@ public class TemplatesController {
     }
 
     @RequestMapping(value = "/upload/file", method = RequestMethod.POST)
-    public String  post(@RequestParam("file")MultipartFile file, HttpSession model) throws IOException {
-        Path path = Paths.get(uploadFolder + File.separator+file.getOriginalFilename());
+    public String  post(@RequestParam("file")MultipartFile file, @RequestParam("type") String type, HttpSession model) throws IOException {
+        String folder = uploadFolder + File.separator + type;
+        File dir = new File(folder);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        Path path = Paths.get(folder + File.separator+file.getOriginalFilename());
         Files.write(path, file.getBytes());
         return "upload_success";
     }

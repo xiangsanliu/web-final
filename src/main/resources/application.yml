@@ -9,6 +9,9 @@ spring:
       charset: UTF-8
       enabled: true
       force: true
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
   messages:
     encoding: UTF-8
   thymeleaf:
@@ -24,8 +27,8 @@ spring:
     jpa:
       repositories:
         enabled: true
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
+#  jpa:
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          auto: update

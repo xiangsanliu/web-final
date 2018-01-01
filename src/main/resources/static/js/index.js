@@ -48,4 +48,5 @@ function displayDescription(name, description) {
     $("#content_header").text(name);
     $("#assign_body").text(description);
     $("#content_body").show();
+    document.getElementById('type').value = name;
 }
