@@ -1,4 +1,4 @@
-package com.feidian.xiang.webfinal.model;
+package com.feidian.xiang.webfinal.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

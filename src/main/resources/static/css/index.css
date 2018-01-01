@@ -8,7 +8,7 @@ html body #wrapper{
 	width: 100%;
 	overflow:hidden;
 	min-width: 980px;
-	font-family: "Hiragino Sans GB", \5FAE\8F6F\96C5\9ED1, Tohoma, sans-sans-serif;
+	font-family: "Hiragino Sans GB", \5FAE\8F6F\96C5\9ED1, Tohoma, sans-serif;
 	background: #f3f3f3;
 	font-size: 12px;
 }
@@ -190,18 +190,27 @@ a{
 	border-radius: 5px;
 }
 #content #content_header{
-	height: 50px;
-	line-height: 50px;
+	height: 70px;
+	line-height: 70px;
 	width: 100%;
 	border-bottom: 2px solid #f3f3f3;
-	padding-left: 25px;
-	font-size: 15px;
-	
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+#content #assign_body {
+	margin-top: 20px;
+	margin-left: 25%;
+	margin-right: 25%;
+	width: 50%;
+	font-weight: bold;
+	font-size: 20px;
 }
 #content #content_body{
-	overflow:hidden;
+	overflow: hidden;
 	width: 100%;
 	height: 100%;
+	display: none;
 }
 #content #content_body p.warning{
 	color: red;
@@ -280,4 +289,7 @@ a{
 }
 #footer #copyright a:hover{
 	text-decoration: underline;
+}
+#assignment_description {
+	text-align: center;
 }

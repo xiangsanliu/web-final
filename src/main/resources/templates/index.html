@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!--<script th:src="@{/js/index.js}"></script>-->
+	<script th:src="@{/js/index.js}"></script>
 </head>
 <body>
  	<div id="wrapper">
@@ -14,36 +14,6 @@
 				<a href="javascript:void(0)" class="log">Sign Up</a>
 				<div id="login">
 					<img  th:src="@{/image/user.jpg}" alt="Login" id="User"/>
-					<script>
-						window.onload=function(){
-							var Oimage=document.getElementById('User');
-							var Oshowlog=document.getElementById('showlog');
-						    var timer=null;
-						  
-						    Oimage.onmouseover=function()
-						    {
-						        clearTimeout(timer);
-						        Oshowlog.style.display='block';
-						    };
-						    Oimage.onmouseout=function ()
-						    {
-						        timer=setTimeout(function (){
-						            Oshowlog.style.display='none';
-						        },50);
-						    };
-
-						    Oshowlog.onmouseover=function ()
-						    {
-						        clearTimeout(timer);
-						    };
-						    Oshowlog.onmouseout=function ()
-						    {
-						        timer=setTimeout(function (){
-						           Oshowlog.style.display='none';
-						        }, 50);
-						    };
-						}
-					</script>
 					<div id="showlog">
 						<p  class="Lo"><a href="javascript:void(0)">学生登陆</a></p>
 						<p class="Lo"><a href="javascript:void(0)">学委登陆</a></p>
@@ -65,18 +35,28 @@
  				<div id="sidebar">
  					<div id="sideHeader">
  						<div><br/></div>
- 						<div id="active">Create Activity</div>
+ 						<div id="active">当前作业</div>
 
  					</div>
- 					<ul id="sidebody">
- 						<li><a href="javascript:void(0)">> Join Activity</a></li>
- 						<li><a href="javascript:void(0)">> My Activity</a></li>
- 						<li><a href="javascript:void(0)">> Others</a></li>
+ 					<ul id="sidebody" th:each="assignment:${assignments}">
+ 						<li><a th:text="${assignment.getName()}" th:onclick="'displayDescription(\''+${assignment.getName()}+'\',\''+${assignment.getDescription()}+'\');'"></a></li>
  					</ul>
+					<script>
+                        function displayDescription(name, description) {
+                            $("#content_header").text(name);
+                            $("#assign_body").text(description);
+                            $("#content_body").show();
+                        }
+					</script>
  				</div>
  				<div id="content">
- 					<div id="content_header">当前位置：创建活动</div>
- 					<div id="content_body">
+ 					<div id="content_header" >使用说明</div>
+					<div id="assign_body" >
+						<span>&nbsp; &nbsp;1. 点击左侧作业查看作业详情。<br/></span>
+						<span>&nbsp; &nbsp;2. 每次只能提交一个文件。<br/></span>
+						<span>&nbsp; &nbsp;3. 严格按照作业格式的要求。<br/></span>
+					</div>
+					<div id="content_body" >
  						<form method='post' action="/upload/file" enctype="multipart/form-data">
 							<input type="file" name="file" id="file"/>
 							<input type="submit" value="Submit" id="submit"/>

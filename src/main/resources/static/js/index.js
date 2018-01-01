@@ -1,12 +1,45 @@
-$('#submit').click(function(){
-    var file = $("#file").val();
-    $.ajax({
-        type: "POST",
-        url: '/upload/file',
-        data: {file: file},
-        success: function (data) {
-            console.log(data);
-            console.log(data.resultCode);
-        }
-    })
+// $('#submit').click(function(){
+//     var file = $("#file").val();
+//     $.ajax({
+//         type: "POST",
+//         url: '/upload/file',
+//         data: {file: file},
+//         success: function (data) {
+//             console.log(data);
+//             console.log(data.resultCode);
+//         }
+//     })
+// });
+
+window.onload=function(){
+    var Oimage=document.getElementById('User');
+    var Oshowlog=document.getElementById('showlog');
+    var timer=null;
+
+    Oimage.onmouseover=function()
+    {
+        clearTimeout(timer);
+        Oshowlog.style.display='block';
+    };
+    Oimage.onmouseout=function ()
+    {
+        timer=setTimeout(function (){
+            Oshowlog.style.display='none';
+        },50);
+    };
+
+    Oshowlog.onmouseover=function ()
+    {
+        clearTimeout(timer);
+    };
+    Oshowlog.onmouseout=function ()
+    {
+        timer=setTimeout(function (){
+            Oshowlog.style.display='none';
+        }, 50);
+    };
+};
+
+$(document).ready(function () {
+    // $("#content_body").hide();
 });
