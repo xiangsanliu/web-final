@@ -1,17 +1,124 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>XAIGN</title>
+	<link rel="stylesheet" th:href="@{/css/index.css}" />
 </head>
 <body>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">访问Model</h3>
-        </div>
-        <div class="panel-body">
-            <!--/*@thymesVar id="singlePerson" type="com.feidian.xiang.webfinal.model.Person"*/-->
-            <span th:text="${singlePerson.getName()}"></span><br/>
-        </div>
-    </div>
-</body>
+ 	<div id="wrapper">
+ 		<div id="header">
+			<div class="container">
+				<a href="javascript:void(0)" class="log">Sign Up</a>
+				<div id="login">
+					<img  th:src="@{/image/user.jpg}" alt="Login" id="User"/>
+					<script>
+						window.onload=function(){
+							var Oimage=document.getElementById('User');
+							var Oshowlog=document.getElementById('showlog');
+						    var timer=null;
+						  
+						    Oimage.onmouseover=function()
+						    {
+						        clearTimeout(timer);
+						        Oshowlog.style.display='block';
+						    };
+						    Oimage.onmouseout=function ()
+						    {
+						        timer=setTimeout(function (){
+						            Oshowlog.style.display='none';
+						        },50);
+						    };
+
+						    Oshowlog.onmouseover=function ()
+						    {
+						        clearTimeout(timer);
+						    };
+						    Oshowlog.onmouseout=function ()
+						    {
+						        timer=setTimeout(function (){
+						           Oshowlog.style.display='none';
+						        }, 50);
+						    };
+						}
+					</script>
+					<div id="showlog">
+						<p  class="Lo"><a href="javascript:void(0)">Log in</a></p>
+						<p class="Lo"><a href="javascript:void(0)">Set up</a></p>
+					</div>
+				</div>
+				<div id="search"></div>
+				<div id="nav">
+					<ul class="navul">
+						<li><a href="javascript:void(0)">Home</a></li>
+						<li><a href="javascript:void(0)">Activity</a></li>
+						<li><a href="javascript:void(0)">About Us</a></li>
+					</ul>
+				</div>
+				</div>
+ 		</div>
+
+ 		<div id="main">
+ 			<div class="container">
+ 				<div id="sidebar">
+ 					<div id="sideHeader">
+ 						<div><br/></div>
+ 						<div id="active">Create Activity</div>
+
+ 					</div>
+ 					<ul id="sidebody">
+ 						<li><a href="javascript:void(0)">> Join Activity</a></li>
+ 						<li><a href="javascript:void(0)">> My Activity</a></li>
+ 						<li><a href="javascript:void(0)">> Others</a></li>
+ 					</ul>
+ 				</div>
+ 				<div id="content">
+ 					<div id="content_header">当前位置：创建活动</div>
+ 					<div id="content_body">
+ 						<form action="__APP__/Home/Activity/creatActive" method='post' name='myForm'>
+ 							<p class='warning'></p>
+ 							<div class="row">名　&nbsp;&nbsp;&nbsp;称 &nbsp;<span><input class="text" type="text" name="activeName" id="activeName"/></span></div>
+							<div class="row">开始时间 &nbsp;<span><input class="text" type="text" name="str_time" id="str_time"/></span>
+											 <div class="row_son">结束时间 &nbsp;&nbsp;<span><input class="text" type="text" name="end_time" id="end_time"/></span></div>
+							</div>
+							<div class="row">地　&nbsp;&nbsp;&nbsp;点 &nbsp;<span><input class="text" type="text" name="place" id="place"/></span>
+											 <div class="row_son">电　&nbsp;&nbsp;&nbsp;话 &nbsp;&nbsp;&nbsp;<span><input class="text" id="phone" type="text" name="phone"/></span></div>
+							</div>
+							<div class="row">费　&nbsp;&nbsp;&nbsp;用 &nbsp;<span><input class="text" id="price" type="text" name="price"/></span></div>
+							<div class="row2"><span></span>活动介绍 &nbsp;<textarea name='content'  id="actContent" rows="6" cols="49"></textarea></div>
+
+							<!--<input type="hidden" name="href" value="<{$_SESSION['href']}>"/>-->
+							<div class="row"><a href="javascript:void(0)" class="submit" id="sub">创建活动</a></div>
+							<!-- <span><{$_SESSION['href']}></span> -->
+ 						</form>
+ 					</div>
+ 					
+ 					<script>
+ 						$(document).ready(function(){
+ 							/*$("#sub").on('click',function(){
+ 								var activeName = $("#activeName").val();
+ 								var str_time   = $("#str_time").val();
+ 								var end_time   = $("#end_time").val();
+ 								var place      = $("#place").val();
+ 								var phone 	   = $("#phone").val();
+ 								var price      = $("#price").val();
+ 								//alert('123');		
+ 							});*/
+ 							$('#sub').click(function(){
+								$('form[name="myForm"]').submit();
+							});
+ 						});
+ 					</script>
+ 				</div>
+ 			</div>
+ 		</div>
+
+ 		<div id="footer">
+ 			<div class="container">
+ 				<div id="copyright">
+ 					<p>©2016 Powered by <a href="http://www.52feidian.com/" target="_blank"> Feidian Studio </a> | All Rights Reserved.</p>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	
+</body> 
 </html>
