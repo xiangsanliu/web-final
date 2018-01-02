@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/index.js}"></script>
+    <title>后台管理</title>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <div class="container">
+            <a href="javascript:void(0)" class="log">Sign Up</a>
+            <div id="login">
+                <img  th:src="@{/image/user.jpg}" alt="Login" id="User"/>
+                <div id="showlog">
+                    <p  class="Lo"><a href="javascript:void(0)">我是学委</a></p>
+                </div>
+            </div>
+            <div id="search"></div>
+            <div id="nav">
+                <ul class="navul">
+                    <li><a href="javascript:void(0)">Home</a></li>
+                    <li><a href="javascript:void(0)">Activity</a></li>
+                    <li><a href="javascript:void(0)">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="container">
+            <div id="sidebar">
+                <div id="sideHeader">
+                    <div><br/></div>
+                    <div id="active">当前作业</div>
+
+                </div>
+                <ul id="sidebody" th:each="assignment:${assignments}">
+                    <li><a th:text="${assignment.getName()}" th:onclick="'displayDescription(\''+${assignment.getName()}+'\',\''+${assignment.getDescription()}+'\');'"></a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <div id="content_header" >使用说明</div>
+                <div id="assign_body" >
+                    <span>&nbsp; &nbsp;1. 点击左侧作业查看作业详情。<br/></span>
+                    <span>&nbsp; &nbsp;2. 每次只能提交一个文件。<br/></span>
+                    <span>&nbsp; &nbsp;3. 严格按照作业格式的要求。<br/></span>
+                </div>
+                <div id="content_body" >
+                    <form method='post' action="/upload/file" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file"/>
+                        <input type="text" name="type" id="type" style="display: none" title=""/>
+                        <input type="submit" value="Submit" id="submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div id="copyright">
+                <p>©2016 Powered by <a href="http://www.52feidian.com/" target="_blank"> Feidian Studio </a> | All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

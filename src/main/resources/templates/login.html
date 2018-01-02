@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>登陆</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="container">
+
+    <form class="form-signin" action="/manage" method="post">
+        <h2 class="form-signin-heading">请登陆</h2>
+        <label for="inputId" class="sr-only">学号</label>
+        <input type="text" name="inputId" id="inputId" class="form-control" placeholder="学号"/>
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="密码" />
+        <input class="btn btn-lg btn-primary btn-block" type="submit" id="submit"/>
+    </form>
+
+</div> <!-- /container -->
+
+</body>
+</html>

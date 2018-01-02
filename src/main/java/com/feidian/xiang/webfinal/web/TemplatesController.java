@@ -36,7 +36,7 @@ public class TemplatesController {
     }
 
     @RequestMapping(value = "/upload/file", method = RequestMethod.POST)
-    public String  post(@RequestParam("file")MultipartFile file, @RequestParam("type") String type, HttpSession model) throws IOException {
+    public String  submit(@RequestParam("file")MultipartFile file, @RequestParam("type") String type) throws IOException {
         String folder = uploadFolder + File.separator + type;
         File dir = new File(folder);
         if (!dir.exists()) {
@@ -45,5 +45,31 @@ public class TemplatesController {
         Path path = Paths.get(folder + File.separator+file.getOriginalFilename());
         Files.write(path, file.getBytes());
         return "upload_success";
+    }
+
+    @RequestMapping(value = "/manage", method = RequestMethod.POST)
+    public String manage(@RequestParam(value = "inputId", required = false) String inputId
+            , @RequestParam(value = "inputPassword", required = false) String inputPassword
+            ,  Model model, HttpSession session){
+        Boolean isLogged = (Boolean) session.getAttribute("isLogged");
+
+        if (isLogged != null && isLogged) {
+            List<Assignment> assignments = assignmentRepoistory.findAll();
+            model.addAttribute("assignments", assignments);
+            return "manage";
+        }
+        if ("2015317200401".equals(inputId) || "123456".equals(inputPassword)) {
+            session.setAttribute("isLogged", true);
+            List<Assignment> assignments = assignmentRepoistory.findAll();
+            model.addAttribute("assignments", assignments);
+            return "manage";
+        } else{
+            return "login";
+        }
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(HttpSession session) {
+        return "login";
     }
 }
