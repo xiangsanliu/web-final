@@ -55,7 +55,7 @@ public class TemplatesController {
         return "upload_success";
     }
 
-    @RequestMapping(value = "/submit/assignmet", method = RequestMethod.POST)
+    @RequestMapping(value = "/save/assigment", method = RequestMethod.POST)
     public String submitAssignment(Assignment assignment) {
         Assignment ass = assignmentRepoistory.findAssignmentByName(assignment.getName());
         if (ass == null) {

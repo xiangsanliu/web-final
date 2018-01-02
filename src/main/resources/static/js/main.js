@@ -1,16 +1,3 @@
-// $('#submit').click(function(){
-//     var file = $("#file").val();
-//     $.ajax({
-//         type: "POST",
-//         url: '/upload/file',
-//         data: {file: file},
-//         success: function (data) {
-//             console.log(data);
-//             console.log(data.resultCode);
-//         }
-//     })
-// });
-
 window.onload=function(){
     var Oimage=document.getElementById('User');
     var Oshowlog=document.getElementById('showlog');
@@ -49,10 +36,4 @@ function displayDescription(name, description) {
     $("#assign_body").text(description);
     $("#content_body").show();
     document.getElementById('type').value = name;
-}
-function editdDescription(name, description) {
-    $("#content_header").text(name);
-    $("#assign_body").hide();
-    $("#content_body").show();
-    document.getElementById('textdescription').value = description;
 }
