@@ -50,3 +50,9 @@ function displayDescription(name, description) {
     $("#content_body").show();
     document.getElementById('type').value = name;
 }
+function editdDescription(name, description) {
+    $("#content_header").text(name);
+    $("#assign_body").hide();
+    $("#content_body").show();
+    document.getElementById('textdescription').value = description;
+}

@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link rel="stylesheet" th:href="@{/css/index.css}" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script th:src="@{/js/index.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </head>
 <body>
  	<div id="wrapper">
  		<div id="header">
 			<div class="container">
-				<a href="javascript:void(0)" class="log">Sign Up</a>
+				<a href="javascript:void(0)" class="log">作业提交</a>
 				<div id="login">
 					<img  th:src="@{/image/user.jpg}" alt="Login" id="User"/>
 					<div id="showlog">
-						<p  class="Lo"><a href="/login">我是学委</a></p>
+						<p  class="Lo"><a href="/logout">登出</a></p>
 					</div>
 				</div>
 				<div id="search"></div>
@@ -37,6 +37,7 @@
  						<div id="active">当前作业</div>
 
  					</div>
+ 					<!--/*@thymesVar id="assignments" type="java.util.List<com.feidian.xiang.webfinal.domain.model.Assignment>"*/-->
  					<ul id="sidebody" th:each="assignment:${assignments}">
  						<li><a th:text="${assignment.getName()}" th:onclick="'displayDescription(\''+${assignment.getName()}+'\',\''+${assignment.getDescription()}+'\');'"></a></li>
  					</ul>
@@ -49,10 +50,16 @@
 						<span>&nbsp; &nbsp;3. 严格按照作业格式的要求。<br/></span>
 					</div>
 					<div id="content_body" >
- 						<form method='post' action="/upload/file" enctype="multipart/form-data">
-							<input type="file" name="file" id="file"/>
+ 						<form method='post' action="/submit/file" enctype="multipart/form-data">
+							<!--<div id="choose_file"><input type="file" name="file" id="file"/></div>-->
+							<a href="javascript:void(0);" class="file">选择文件
+								<input type="file" name="file" id="file"/>
+							</a>
+							<br/>
 							<input type="text" name="type" id="type" style="display: none" title=""/>
-							<input type="submit" value="Submit" id="submit"/>
+							<button id="upload_button">上传
+								<input type="submit" style="display: none" value="Submit" id="submit" />
+							</button>
  						</form>
  					</div>
  				</div>
