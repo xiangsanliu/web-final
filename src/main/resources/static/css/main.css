@@ -207,65 +207,11 @@ a{
 	font-weight: bold;
 	font-size: 20px;
 }
-#content #content_body{
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-	display: none;
-}
 #content #content_body p.warning{
 	color: red;
 	margin-left: 48px;
 	height: 20px;
 	line-height:30px;
-}
-#content #content_body div.row{
-	height: 45px;
-	line-height: 45px;
-	padding-left:45px;
-}
-#content #content_body div.row a.submit{
-	color: #FFF;
-	margin-left: 225px;
-	margin-top: 30px;
-	display: inline-block;
-	width: 100px;
-	text-align: center;
-	height: 30px;
-	line-height: 30px;
-	border-radius: 3px;
-	text-decoration: none;
-	background:  #89A2E9;
-}
-#content #content_body div.row2{
-	padding-left: 45px;
-}
-#content #content_body div.row2 span{
-	position: relative;
-	top: -120px;
-}
-#content #content_body div.row2 textarea{
-	border: 1px solid #C6C6C6;
-	border-radius: 3px;
-	margin-top: 10px;
-	padding-top: 5px;
-	padding-left: 5px;
-}
-#content #content_body div.row div.row_son{
-	display: inline-block;
-	margin-left: 35px;
-}
-#content #content_body div.row span{
-	display: inline-block;
-	height: 25px;
-	line-height: 25px;
-	border: 1px solid #C6C6C6;
-	border-radius: 3px;
-}
-#content #content_body div.row span input.text{
-	border: none;
-	padding-left: 5px;
-	width: 160px;
 }
 #footer{
 	width: 100%;

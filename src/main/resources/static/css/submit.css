@@ -43,5 +43,11 @@
 }
 
 #content #content_body{
-    margin-top: 20%;
+    position: absolute;
+    left: 39%;
+    top: 70%;
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
+    display: none;
 }

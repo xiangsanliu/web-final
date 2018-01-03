@@ -3,27 +3,39 @@
 <head>
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <link rel="stylesheet" th:href="@{/css/manage.css}" />
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <script th:src="@{/js/main.js}"></script>
     <title>后台管理</title>
 </head>
 <script th:inline="javascript">
-    function editdDescription(name) {
-        var str = [[${assignments}]];
-        var assignments = eval(str);
-        var description;
-        assignments.forEach(function (value) {
-            if (value.name === name)
-                description = value.description;
-        });
-        $("#content_header").text(name);
-        $("#assign_body").hide();
-        $("#content_body").show();
-        $("#type").show();
-        document.getElementById('textdescription').value = description;
-        document.getElementById('type').value = name;
+    function editdDescription(id) {
+        if (id != null) {
+            var str = [[${assignments}]];
+            var assignments = eval(str);
+            var description;
+            var name;
+            assignments.forEach(function (value) {
+                if (value.id === id) {
+                    description = value.description;
+                    name = value.name;
+                }
+            });
+            $("#content_header").text(name);
+            $("#assign_body").hide();
+            $("#content_body").show();
+            $("#type").show();
+            document.getElementById('textdescription').value = description;
+            document.getElementById('type').value = name;
+        } else {
+            $("#content_header").text('添加作业');
+            $("#assign_body").hide();
+            $("#content_body").show();
+            $("#type").show();
+            document.getElementById('textdescription').value = '';
+            document.getElementById('type').value = '';
+        }
     }
 </script>
 
@@ -59,11 +71,11 @@
             <div id="sidebar">
                 <div id="sideHeader">
                     <div><br/></div>
-                    <div id="active" th:onclick="'editdDescription(\' \');'">添加作业</div>
+                    <div id="active" th:onclick="'editdDescription();'">添加作业</div>
                 </div>
                 <!--/*@thymesVar id="assignments" type="java.util.List<com.feidian.xiang.webfinal.domain.model.Assignment>"*/-->
                 <ul id="sidebody" th:each="assignment, index:${assignments}">
-                    <li><a th:text="${assignment.getName()}" th:onclick="'editdDescription(\''+${assignment.getName()}+'\');'"></a></li>
+                    <li><a th:text="${assignment.getName()}" th:onclick="'editdDescription('+${assignment.getId()}+');'"></a></li>
                 </ul>
             </div>
             <div id="content">
@@ -73,8 +85,8 @@
                 </div>
                 <div id="content_body" >
                     <form method="post" action="/save/assigment">
-                        <textarea id="textdescription" rows="6" cols="49" name="description" title="" placeholder="详情"></textarea>
                         <input type="text" name="name" id="type" style="display: none" title="标题" placeholder="标题"/>
+                        <textarea id="textdescription" rows="10" cols="50" name="description" title="" placeholder="详情"></textarea>
                         <br/>
                         <button id="save_button">提交</button>
                     </form>

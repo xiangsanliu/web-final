@@ -8,6 +8,24 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script th:src="@{/js/main.js}"></script>
 </head>
+<script th:inline="javascript">
+    function displayDescription(id) {
+        var str = [[${assignments}]];
+        var assignments = eval(str);
+        var description;
+        var name;
+        assignments.forEach(function (value) {
+            if (value.id === id) {
+                description = value.description;
+                name = value.name;
+            }
+        });
+        $("#content_header").text(name);
+        $("#assign_body").text(description);
+        $("#content_body").show();
+        document.getElementById('type').value = name;
+    }
+</script>
 <body>
  	<div id="wrapper">
  		<div id="header">
@@ -36,11 +54,10 @@
  					<div id="sideHeader">
  						<div><br/></div>
  						<div id="active">当前作业</div>
-
  					</div>
  					<!--/*@thymesVar id="assignments" type="java.util.List<com.feidian.xiang.webfinal.domain.model.Assignment>"*/-->
  					<ul id="sidebody" th:each="assignment:${assignments}">
- 						<li><a th:text="${assignment.getName()}" th:onclick="'displayDescription(\''+${assignment.getName()}+'\',\''+${assignment.getDescription()}+'\');'"></a></li>
+ 						<li><a th:text="${assignment.getName()}" th:onclick="'displayDescription('+${assignment.getId()}+');'"></a></li>
  					</ul>
  				</div>
  				<div id="content">
