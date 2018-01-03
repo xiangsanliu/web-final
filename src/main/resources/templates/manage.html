@@ -3,13 +3,12 @@
 <head>
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <link rel="stylesheet" th:href="@{/css/manage.css}" />
-    <!--<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!--<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <script th:src="@{/js/main.js}"></script>
     <title>后台管理</title>
 </head>
 <script th:inline="javascript">
+    var xmlHttp = new XMLHttpRequest();
     function editdDescription(id) {
         if (id != null) {
             var str = [[${assignments}]];
@@ -37,6 +36,54 @@
             document.getElementById('type').value = '';
         }
     }
+    function deleteAssign() {
+        var name = $('#content_header').html();
+        xmlHttp.open('post', '/delete/assign?name='+name, true);
+        xmlHttp.send();
+        window.location.reload();
+    }
+    function saveAssign() {
+        var inputName = document.getElementById('type').value;
+        var name = $('#content_header').html();
+        var description = document.getElementById('textdescription').value;
+        var isThere = false;        //检查是否已存在
+        var id;
+        var str = [[${assignments}]];
+        var assignments = eval(str);
+        assignments.forEach(function (value) {
+            if (value.name === inputName) {
+                isThere = true;
+                id = value.id;
+            }
+        });
+        if ( inputName==null|| inputName.length===0) {
+            alert('请输入作业名称');
+        } else if (name === '添加作业') {
+            if (!isThere) {
+                $.ajax({
+                    type: "post",
+                    url: "/save/assign",
+                    data: {name: inputName, description: description},
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
+            } else {
+                alert(inputName + '已存在!');
+            }
+        } else {
+            $.ajax({
+                type: "post",
+                url: "/save/assign",
+                data: {id: id, name: inputName, description: description},
+                success: function () {//ajax请求成功后触发的方法
+                    window.location.reload();
+                }
+            });
+        }
+
+
+    }
 </script>
 
 <body>
@@ -55,16 +102,12 @@
             <div id="nav">
                 <ul class="navul">
                     <li><a href="javascript:void(0)">Home</a></li>
-                    <li><a href="javascript:void(0)">Activity</a></li>
+                    <li><a href="javascript:void(0)">Manage</a></li>
                     <li><a href="javascript:void(0)">About Us</a></li>
                 </ul>
             </div>
         </div>
     </div>
-
-    <script th:inline="javascript">
-
-    </script>
 
     <div id="main">
         <div class="container">
@@ -84,13 +127,15 @@
                     <span>&nbsp; &nbsp;1. 点击左侧作业查看作业详情。<br/></span>
                 </div>
                 <div id="content_body" >
-                    <form method="post" action="/save/assigment">
+                    <form >
                         <input type="text" name="name" id="type" style="display: none" title="标题" placeholder="标题"/>
-                        <textarea id="textdescription" rows="10" cols="50" name="description" title="" placeholder="详情"></textarea>
+                        <textarea id="textdescription" maxlength="240" rows="10" cols="50" name="description" title="" placeholder="详情"></textarea>
                         <br/>
-                        <button id="save_button">提交</button>
                     </form>
-                    <button id="delete_button">删除</button>
+                    <div id="form_control">
+                        <button id="save_button" onclick="saveAssign()">提交</button>
+                        <button id="delete_button" onclick="deleteAssign()">删除</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,7 +143,7 @@
     <div id="footer">
         <div class="container">
             <div id="copyright">
-                <p>©2016 Powered by <a href="http://www.52feidian.com/" target="_blank"> Feidian Studio </a> | All Rights Reserved.</p>
+                <p>©2018 Powered by <a href="http://www.52feidian.com/" target="_blank"> Feidian Studio </a> | All Rights Reserved.</p>
             </div>
         </div>
     </div>

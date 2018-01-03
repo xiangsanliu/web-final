@@ -35,12 +35,8 @@ public class TemplatesController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session){
-        Short userType = (Short) session.getAttribute("userType");
-        if (userType != null) {
-            return logto(model, userType);
-        } else {
-            return "login";
-        }
+//        return logto(model, session);
+        return "login";
     }
 
     @RequestMapping(value = "/submit/file", method = RequestMethod.POST)
@@ -55,15 +51,21 @@ public class TemplatesController {
         return "upload_success";
     }
 
-    @RequestMapping(value = "/save/assigment", method = RequestMethod.POST)
-    public String submitAssignment(Assignment assignment) {
-        Assignment ass = assignmentRepoistory.findAssignmentByName(assignment.getName());
-        if (ass == null) {
-            assignmentRepoistory.save(assignment);
-        } else {
-            assignmentRepoistory.delete(ass.getId());
-            assignmentRepoistory.save(assignment);
+    @RequestMapping(value = "/delete/assign", method = RequestMethod.POST)
+    public String deleteAssignment(@RequestParam("name") String name) throws InterruptedException {
+        Assignment assignment = assignmentRepoistory.findAssignmentByName(name);
+        if (assignment != null) {
+            assignmentRepoistory.delete(assignment.getId());
         }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/save/assign", method = RequestMethod.POST)
+    public String submitAssignment(Assignment assignment) {
+        if (assignment.getId() != null && assignmentRepoistory.exists(assignment.getId())) {
+            assignmentRepoistory.delete(assignment.getId());
+        }
+        assignmentRepoistory.save(assignment);
         return "redirect:/";
     }
 
@@ -71,15 +73,14 @@ public class TemplatesController {
     public String manage(@RequestParam(value = "inputId", required = false) String inputId
             , @RequestParam(value = "inputPassword", required = false) String inputPassword
             ,  Model model, HttpSession session){
-
         Short userType = (Short) session.getAttribute("userType");
         if (userType != null) {
-            return logto(model, userType);
+            return logto(model,session);
         } else if (userRepository.exists(Long.valueOf(inputId))) {
             User user = userRepository.findUserById(Long.valueOf(inputId));
             if (user.getPassword().equals(inputPassword)) {
                 session.setAttribute("userType", user.getUserType());
-                return logto(model, user.getUserType());
+                return logto(model, session);
             }
         }
         return "login";
@@ -91,13 +92,18 @@ public class TemplatesController {
         return "login";
     }
 
-    private String logto(Model model, Short userType) {
-        List<Assignment> assignments = assignmentRepoistory.findAll();
-        model.addAttribute("assignments", assignments);
-        if (userType == Consts.USER_TYPE_ADMIN) {
-            return "manage";
+    private String logto(Model model, HttpSession session) {
+        Short userType = (Short) session.getAttribute("userType");
+        if (userType == null) {
+            return "login";
         } else {
-            return "submit";
+            List<Assignment> assignments = assignmentRepoistory.findAll();
+            model.addAttribute("assignments", assignments);
+            if (userType == Consts.USER_TYPE_ADMIN) {
+                return "manage";
+            } else {
+                return "submit";
+            }
         }
     }
 
