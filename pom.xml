@@ -5,7 +5,7 @@
 
 	<groupId>com.feidian.xiang</groupId>
 	<artifactId>web-final</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>WebFinal</name>

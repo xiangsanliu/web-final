@@ -44,10 +44,10 @@
 
 #content #content_body{
     position: absolute;
-    left: 39%;
+    left: 36%;
     top: 70%;
     overflow: hidden;
     width: 50%;
-    height: 100%;
+    height: 20%;
     display: none;
 }
