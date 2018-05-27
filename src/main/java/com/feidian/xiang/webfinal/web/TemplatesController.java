@@ -40,7 +40,7 @@ public class TemplatesController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
-        return logto(model, session);
+        return logTo(model, session);
     }
 
     @RequestMapping(value = "/submit/file", method = RequestMethod.POST)
@@ -76,12 +76,12 @@ public class TemplatesController {
             , Model model, HttpSession session) {
         Short userType = (Short) session.getAttribute("userType");
         if (userType != null) {
-            return logto(model, session);
+            return logTo(model, session);
         } else {
             User user = userMapper.getById(Long.valueOf(inputId));
             if (user.getPassword().equals(inputPassword)) {
                 session.setAttribute("userType", user.getUserType());
-                return logto(model, session);
+                return logTo(model, session);
             }
         }
         return "login";
@@ -93,7 +93,7 @@ public class TemplatesController {
         return "login";
     }
 
-    private String logto(Model model, HttpSession session) {
+    private String logTo(Model model, HttpSession session) {
         Short userType = (Short) session.getAttribute("userType");
         if (userType == null) {
             return "login";
