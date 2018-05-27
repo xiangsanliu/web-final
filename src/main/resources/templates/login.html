@@ -10,7 +10,7 @@
         <div class="container">
             <a href="javascript:void(0)" class="log">作业管理</a>
             <div id="login">
-                <img  th:src="@{/image/user.jpg}" alt="Login" id="User"/>
+                <img th:src="@{/image/user.jpg}" alt="Login" id="User"/>
             </div>
             <div id="search"></div>
             <div id="nav">
@@ -32,7 +32,8 @@
 
                 <form class="form-signin" action="/login" method="post">
                     <input type="text" name="inputId" id="inputId" class="form-control" placeholder="学号"/>
-                    <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="密码" />
+                    <input type="password" name="inputPassword" id="inputPassword" class="form-control"
+                           placeholder="密码"/>
                     <input class="submit" type="submit" id="submit" value="登陆"/>
                 </form>
             </div>
@@ -41,7 +42,8 @@
     <div id="footer">
         <div class="container">
             <div id="copyright">
-                <p>©2018 Powered by <a href="http://www.52feidian.com/" target="_blank"> Feidian Studio </a> | All Rights Reserved.</p>
+                <p>©2018 Powered by <a href="http://www.52feidian.com/" target="_blank"> Feidian Studio </a> | All
+                    Rights Reserved.</p>
             </div>
         </div>
     </div>
