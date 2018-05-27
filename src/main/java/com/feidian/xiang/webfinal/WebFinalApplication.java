@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.feidian.xiang.webfinal.dao.mapper")
 public class WebFinalApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WebFinalApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WebFinalApplication.class, args);
+    }
 
 }
