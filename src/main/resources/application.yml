@@ -16,7 +16,5 @@ spring:
   profiles:
     active: dev
 mybatis:
-  type-aliases-package: com.feidian.xiang.webfinal.dao.entity
-  mapper-locations: classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
 

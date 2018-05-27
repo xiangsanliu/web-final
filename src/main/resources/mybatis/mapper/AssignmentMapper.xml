@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feidian.xiang.webfinal.dao.mapper.AssignmentMapper">
+    <insert id="insert">
+        insert ignore into
+            assignment (id, name, description)
+        values (#{assignment.id}, #{assignment.name}, #{assignment.description})
+    </insert>
+
+    <select id="listAll" resultType="com.feidian.xiang.webfinal.dao.entity.Assignment">
+        select *
+        from assignment
+    </select>
+
+    <select id="exists" resultType="java.lang.Boolean">
+        select count(1)
+        from assignment
+        where id = #{id}
+        limit 1
+    </select>
+
+    <select id="getById" resultType="com.feidian.xiang.webfinal.dao.entity.Assignment">
+        select *
+        from assignment
+        where id = #{id}
+        limit 1
+    </select>
+
+    <select id="getByName" resultType="com.feidian.xiang.webfinal.dao.entity.Assignment">
+        select *
+        from assignment
+        where name = #{name}
+        limit 1
+    </select>
+
+</mapper>

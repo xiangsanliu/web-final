@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author xiang
  */
 @SpringBootApplication
+@MapperScan("com.feidian.xiang.webfinal.dao.mapper")
 public class WebFinalApplication {
 
 	public static void main(String[] args) {
