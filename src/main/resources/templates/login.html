@@ -5,8 +5,8 @@
 <link rel="stylesheet" th:href="@{/css/main.css}"/>
 <link rel="stylesheet" th:href="@{/css/login.css}"/>
 <body>
-<div id='wrapper'>
-    <div id="header">
+<el-container id='wrapper'>
+    <el-header id="header">
         <div class="container">
             <a href="javascript:void(0)" class="log">作业管理</a>
             <div id="login">
@@ -21,8 +21,8 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div id='main'>
+    </el-header>
+    <el-main id='main'>
         <div class="container">
             <div id='page'>
 
@@ -38,15 +38,25 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div id="footer">
+    </el-main>
+    <el-footer id="footer">
         <div class="container">
             <div id="copyright">
                 <p>©2018 Powered by <a href="http://www.52feidian.com/" target="_blank"> Feidian Studio </a> | All
                     Rights Reserved.</p>
             </div>
         </div>
-    </div>
-</div>
+    </el-footer>
+</el-container>
 </body>
+<style type="text/css">
+    .el-footer {
+        width: 100%;
+        background: #222222;
+        height: 50px;
+        float: left;
+        border-top: 1px solid #ccc;
+        box-shadow: inset 3px 2px 6px #000;
+    }
+</style>
 </html>

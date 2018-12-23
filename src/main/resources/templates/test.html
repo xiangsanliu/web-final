@@ -2,45 +2,32 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <!-- import CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
 <div id="app">
-    <el-container style="height: 100%;">
-        <el-header>header</el-header>
-        <el-main>main</el-main>
-        <el-footer>footer</el-footer>
+    <el-container>
+        <el-header height="60px">
+            <el-row>
+                <el-col :span="24">
+                    <div class="grid-content bg-purple-dark"></div>
+                </el-col>
+            </el-row>
+        </el-header>
+        <el-main>Main</el-main>
+        <el-footer height="60px">Footer</el-footer>
     </el-container>
 </div>
 </body>
-<!-- import Vue before Element -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <!-- import JavaScript -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     new Vue({
         el: '#app',
-        data: function() {
-            return { visible: false }
+        data: function () {
+            return {visible: false}
         }
     })
 </script>
-<style>
-    .el-header, .el-footer {
-        background-color: #B3C0D1;
-        color: #333;
-        text-align: center;
-        line-height: 60px;
-    }
-
-    .el-main {
-        background-color: #E9EEF3;
-        color: #333;
-        text-align: center;
-        line-height: 100%;
-    }
-
-</style>
-
 </html>
