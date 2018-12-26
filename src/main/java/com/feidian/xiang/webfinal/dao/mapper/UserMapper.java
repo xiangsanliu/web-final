@@ -1,6 +1,7 @@
 package com.feidian.xiang.webfinal.dao.mapper;
 
 import com.feidian.xiang.webfinal.dao.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author 项健健
@@ -15,13 +16,13 @@ public interface UserMapper {
      * @param id id
      * @return boolean
      */
-    boolean exists(Long id);
+    boolean exists(@Param("id") String id);
 
     /**
      * select one
      * @param id id
      * @return user
      */
-    User getById(Long id);
+    User getById(@Param("id") String id);
 
 }

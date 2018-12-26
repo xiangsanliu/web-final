@@ -60,6 +60,6 @@ public interface AssignmentMapper {
      * insert
      * @param assignment assignment
      */
-    void insert(Assignment assignment);
+    void insert(@Param("assignment") Assignment assignment);
 
 }

@@ -43,6 +43,29 @@ public class TemplatesController {
         return logTo(model, session);
     }
 
+    @RequestMapping(value = "/login")
+    public String manage(@RequestParam(value = "inputId", required = false) String inputId
+            , @RequestParam(value = "inputPassword", required = false) String inputPassword
+            , Model model, HttpSession session) {
+        Short userType = (Short) session.getAttribute("userType");
+        if (userType != null) {
+            return logTo(model, session);
+        } else {
+            User user = userMapper.getById(inputId);
+            if (user.getPassword().equals(inputPassword)) {
+                session.setAttribute("userType", user.getUserType());
+                return logTo(model, session);
+            }
+        }
+        return "login";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("userType");
+        return "login";
+    }
+
     @RequestMapping(value = "/submit/file", method = RequestMethod.POST)
     public String submitFile(@RequestParam("file") MultipartFile file, @RequestParam("type") String type) throws IOException {
         String folder = uploadFolder + File.separator + type;
@@ -68,29 +91,6 @@ public class TemplatesController {
     public String submitAssignment(Assignment assignment) {
         assignmentMapper.insert(assignment);
         return "redirect:/";
-    }
-
-    @RequestMapping(value = "/login")
-    public String manage(@RequestParam(value = "inputId", required = false) String inputId
-            , @RequestParam(value = "inputPassword", required = false) String inputPassword
-            , Model model, HttpSession session) {
-        Short userType = (Short) session.getAttribute("userType");
-        if (userType != null) {
-            return logTo(model, session);
-        } else {
-            User user = userMapper.getById(Long.valueOf(inputId));
-            if (user.getPassword().equals(inputPassword)) {
-                session.setAttribute("userType", user.getUserType());
-                return logTo(model, session);
-            }
-        }
-        return "login";
-    }
-
-    @RequestMapping("/logout")
-    public String logout(HttpSession session) {
-        session.removeAttribute("userType");
-        return "login";
     }
 
     private String logTo(Model model, HttpSession session) {

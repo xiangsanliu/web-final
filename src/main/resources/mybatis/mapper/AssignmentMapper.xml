@@ -6,7 +6,7 @@
     <insert id="insert">
         insert ignore into
             assignment (id, name, description)
-        values (#{assignment.id}, #{assignment.name}, #{assignment.description})
+        value (#{assignment.id}, #{assignment.name}, #{assignment.description})
     </insert>
 
     <select id="listAll" resultType="com.feidian.xiang.webfinal.dao.entity.Assignment">
